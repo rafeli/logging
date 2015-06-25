@@ -5,6 +5,7 @@ std::stringstream *Logging::buffer = 0;
 std::streambuf *oldCerrBuf;
 std::string Logging::indent;
 std::string Logging::indentedFunction;
+std::string logAny ="qqq";
 
 
 // stream operators
@@ -53,8 +54,7 @@ std::string Logging::getBuffer() {
 void Logging::log(int status, std::string method) {
 
 
-  std::string s = (*Logging::buffer).str(),
-              logAny = "qqq";
+  std::string s = (*Logging::buffer).str();
 
   // output the status, method and message, e.g.: 
   // void MyModule::myMethod(): entering  ...
