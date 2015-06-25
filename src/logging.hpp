@@ -6,28 +6,31 @@
 #define INFO    10
 #define WARNING 5
 #define ERROR   1
-#define THROWING 2
 
 
- #define MYLOG(n,s)                         \
+
+#define MYLOG(n,s)                         \
   (*Logging::buffer) << s;                 \
   Logging::log(n,__PRETTY_FUNCTION__ )
 
 
-// #define MYLOG(n,s)
-
 #include <iostream>
+#include <ostream>
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
 
+// some stream operator for standard objects:
+std::ostream& operator << (std::ostream & os, std::vector<unsigned int> v);
 
 class Logging  {
 
 
 private:
-  static const int logLevel =  DEBUG;
+  static const int logLevel = INFO;
   static std::ofstream *ofs;
+  static std::string indent, indentedFunction;
 
 public:
 
@@ -44,6 +47,8 @@ public:
   static void finalize();
 
   static void log(int status, std::string method);
+
+  static std::string getBuffer();
 
   static void setLevel(int newLevel);
 
