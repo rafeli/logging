@@ -78,6 +78,9 @@ void Logging::log(int status, std::string method) {
     case WARNING: 
       (*ofs) << "WARNING: " << indent;
       break;
+    case THROWING: 
+      (*ofs) << "  ERROR: " << indent;
+      break;
     case ERROR: 
       (*ofs) << "  ERROR: " << indent;
       break;

@@ -5,6 +5,7 @@
 #define DEBUG   20
 #define INFO    10
 #define WARNING 5
+#define THROWING   2
 #define ERROR   1
 
 
