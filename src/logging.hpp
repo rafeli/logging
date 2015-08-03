@@ -8,6 +8,9 @@
 #define THROWING 2
 #define ERROR   1
 
+#define THROW(s)                           \
+  throw std::string(s)
+
 
 #define MYLOG(n,s)                         \
   (*Logging::buffer) << s;                 \
