@@ -47,6 +47,7 @@ public:
 
   // static methods 
   static void prepare();
+  static void prepare(const std::string&);
   static void finalize();
 
   static void log(int status, std::string method);

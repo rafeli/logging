@@ -23,9 +23,14 @@ Logging::~Logging() {
 }
 
 void Logging::prepare() {
+  Logging::prepare("./test.log");
+}
+ 
+
+void Logging::prepare(const std::string& logFileName) {
   // dont know how to set a std::ofstream* to std::cout
   // but logging to a file is probably better anyway ...
-  Logging::ofs = new std::ofstream("./test.log");
+  Logging::ofs = new std::ofstream(logFileName);
   Logging::buffer = new std::stringstream();
 
   // redirect error to logfile
