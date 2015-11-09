@@ -7,6 +7,8 @@ std::string Logging::indent;
 std::string Logging::indentedFunction;
 std::string logAny ="qqq";
 
+Logging myLogging;
+
 
 // stream operators
 std::ostream& operator <<(std::ostream& os, std::vector<unsigned int> v) {
@@ -27,7 +29,7 @@ void Logging::prepare() {
 }
  
 void Logging::setLevel(int level_) {
-  logLevel = level_;
+  myLogging.logLevel = level_;
 }
 
 void Logging::prepare(const std::string& logFileName) {
@@ -44,7 +46,7 @@ void Logging::prepare(const std::string& logFileName) {
   Logging::indent = "";
   
   // set default logLevel to DEBUG
-  logLevel = DEBUG;
+  myLogging.logLevel = DEBUG;
 }
 
 void Logging::finalize() {
@@ -71,7 +73,7 @@ void Logging::log(int status, std::string method) {
   // void MyModule::myMethod(): entering  ...
   // skip if status of message unimportant
   if (indent.size() > 100) indent = "";
-  if (status <= logLevel || method.find(logAny)!=std::string::npos) {
+  if (status <= myLogging.logLevel || method.find(logAny)!=std::string::npos) {
     switch  (status) {
     case DEBUGD: 
       (*ofs) << " DEBUGD: " << indent;
