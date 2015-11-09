@@ -31,7 +31,8 @@ class Logging  {
 
 
 private:
-  static const int logLevel = DEBUG;
+
+  static int logLevel;
   static std::ofstream *ofs;
   static std::string indent, indentedFunction;
 

@@ -26,8 +26,12 @@ void Logging::prepare() {
   Logging::prepare("./test.log");
 }
  
+void Logging::setLevel(int level_) {
+  logLevel = level_;
+}
 
 void Logging::prepare(const std::string& logFileName) {
+
   // dont know how to set a std::ofstream* to std::cout
   // but logging to a file is probably better anyway ...
   Logging::ofs = new std::ofstream(logFileName);
@@ -39,6 +43,8 @@ void Logging::prepare(const std::string& logFileName) {
   // set indentation to none
   Logging::indent = "";
   
+  // set default logLevel to DEBUG
+  logLevel = DEBUG;
 }
 
 void Logging::finalize() {
