@@ -35,6 +35,12 @@ private:
 //  static const int logLevel = DEBUG;
   static std::ofstream *ofs;
   static std::string indent, indentedFunction;
+
+  // this is the first parameter that I changed to be a field of the object
+  // myLogging that is instantiated in logging.cpp
+  // TODO: check if all other static variables can be handled similarly,
+  //       because I do not know what static does exactly (e.g. I could *not*
+  //       declare logLevel the same way as 'indent' above. )
   int logLevel;
 
 public:
