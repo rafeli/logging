@@ -1,4 +1,4 @@
-CC = g++ -D_GLIBCXX_USE_CXX11_ABI=0
+CC = g++ # -D_GLIBCXX_USE_CXX11_ABI=0
 CFLAGS = -Wall -g -std=c++0x
 LFLAGS = -L/usr/lib/x86_64-linux-gnu -L /home/rafel/local/lib/json++ 
 INCLUDES =  -I /home/rafel/local/include

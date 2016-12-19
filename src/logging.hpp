@@ -23,6 +23,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <map>
 
 // some stream operator for standard objects:
 std::ostream& operator << (std::ostream & os, std::vector<unsigned int> v);
@@ -43,6 +44,9 @@ private:
   //       declare logLevel the same way as 'indent' above. )
   int logLevel;
 
+  std::map<std::string,int> classLevel, methodLevel;
+
+
 public:
 
   // maybe suboptimal: Logging is a MACRO and needs public access
@@ -53,18 +57,20 @@ public:
   Logging();
   ~Logging();
 
+  // set logLevel global, class or metho
+  static Logging& setLevel(int newLevel);
+  static Logging& setClassLevel(std::string, int);
+  static Logging& setMethodLevel(std::string, int);
+
   // static methods 
-  static void prepare();
-  static void prepare(const std::string&);
+  static Logging& prepare();
+  static Logging& prepare(const std::string&);
   static void finalize();
 
   static void log(int status, std::string method);
 
   static std::string getBuffer();
 
-  static void setLevel(int newLevel);
-
-  static void setModuleLevel(int level, std::string module);
 
 
 };
