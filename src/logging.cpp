@@ -87,7 +87,8 @@ void Logging::log(int status, std::string methodSignature) {
   //     global log level unless set otherwise for this class or method
   int logLevel = myLogging.logLevel;
   methodName = methodSignature; // e.g. "int myClass::getSomeInt()"
-  methodName = methodSignature.substr(methodSignature.find(" ")+1);
+  methodName = methodName.substr(0,methodName.find("(")); // remove argument
+  methodName = methodName.substr(methodName.rfind(" ")+1); // remove return type and e.g. virtual
   if (myLogging.methodLevel.count(methodName) == 0) {
     className = methodName.substr(0,methodName.find("::"));
     if (myLogging.classLevel.count(className) == 1) {
