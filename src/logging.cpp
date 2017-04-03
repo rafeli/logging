@@ -103,17 +103,14 @@ void Logging::log(int status, std::string methodSignature) {
   // void MyModule::myMethod(): entering  ...
   // skip if status of message unimportant
   if (indent.size() > 100) indent = "";
+  if (s.find("ENTERING") != std::string::npos) indent += "  ";
   if (status <= logLevel) {
     switch  (status) {
     case DEBUGD: 
       (*ofs) << " DEBUGD: " << indent;
       break;
     case DEBUG: 
-      if (s.find("EXITING") != std::string::npos && indent.size()>0) {
-        indent.erase(0,2);
-      }
       (*ofs) << "  DEBUG: " << indent ;
-      if (s.find("ENTERING") != std::string::npos) indent += "  ";
       break;
     case INFO: 
       (*ofs) << "INFO: " << indent;
@@ -132,6 +129,9 @@ void Logging::log(int status, std::string methodSignature) {
       break;
     }
     (*ofs) <<  methodName << ": " << (*Logging::buffer).str() << std::endl;
+    if (s.find("EXITING") != std::string::npos && indent.size()>0) {
+      indent.erase(0,2);
+    }
   }
 
   // clear buffer (has been written in Macro)
