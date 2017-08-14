@@ -1,5 +1,6 @@
 #include "testTools.hpp"
 
+double TestTools::tolerance = 1e-4;
 std::string * TestTools::logFileName =0;
 std::ofstream * TestTools::logStream = 0;
 
@@ -35,6 +36,17 @@ void TestTools::report(bool success, std::string msg_) {
       (*logStream) << "FAILED: \t" <<  msg_  << std::endl;
       std::cout << "FAILURE:  " << msg_ << std::endl;
     };
+}
+
+void TestTools::report(double result, double expected, std::string msg_) {
+
+  if (fabs(result-expected) < tolerance) {
+      (*logStream) << "tested and confirmed." << msg_ << std::endl;
+  } else {
+      (*logStream) << "FAILED: \t" << result << " <> " << expected << " for: " <<  msg_  << std::endl;
+      std::cout << "FAILED: \t" << result << " <> " << expected << " for: " <<  msg_  << std::endl;
+  }
+
 }
 
 std::ofstream * TestTools::getLogStream(){

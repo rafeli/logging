@@ -19,7 +19,7 @@
 class TestTools {
 
 private:
-
+  static double tolerance;
   static std::string *logFileName;
   static std::ofstream *logStream;
 
@@ -33,6 +33,7 @@ public:
 
   static void report(bool succes, std::string msg);  
   static void report(std::string , const char*, std::string test_); // proxy for report(str,str,str)
+  static void report(double , double, std::string);
 template <typename T>
 static void report(T actual_, T expected_, std::string test_) {
 
@@ -48,6 +49,8 @@ static void report(T actual_, T expected_, std::string test_) {
 
 
   static std::ofstream * getLogStream();
+
+  static void setTolerance(double );
 
   static std::string * writeFile(std::string fn, std::string content) ;
 

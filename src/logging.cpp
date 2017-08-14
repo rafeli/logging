@@ -104,8 +104,8 @@ void Logging::log(int status, std::string methodSignature) {
   // void MyModule::myMethod(): entering  ...
   // skip if status of message unimportant
   if (indent.size() > 100) indent = "";
-  if (s.find("ENTERING") != std::string::npos) indent += "  ";
   if (status <= logLevel) {
+    if (s.find("ENTERING") != std::string::npos) indent += "  ";
     switch  (status) {
     case DEBUGD: 
       (*ofs) << " DEBUGD: " << indent;
