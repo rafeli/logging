@@ -41,7 +41,7 @@ void TestTools::report(bool success, std::string msg_) {
 void TestTools::report(double result, double expected, std::string msg_) {
 
   if (fabs(result-expected) < tolerance) {
-      (*logStream) << "tested and confirmed." << msg_ << std::endl;
+      (*logStream) << "confirmed " << msg_ << expected << std::endl;
   } else {
       (*logStream) << "FAILED: \t" << result << " <> " << expected << " for: " <<  msg_  << std::endl;
       std::cout << "FAILED: \t" << result << " <> " << expected << " for: " <<  msg_  << std::endl;
