@@ -18,6 +18,8 @@ std::ostream& operator <<(std::ostream& os, std::vector<unsigned int> v) {
 }
 
 Logging::Logging() {
+  Logging::ofs = new std::ofstream("/dev/null");
+  Logging::buffer = new std::stringstream();
 }
 
 Logging::~Logging() {
@@ -26,11 +28,14 @@ Logging::~Logging() {
 Logging& Logging::prepare() {
   return Logging::prepare("./test.log");
 }
+
  
 Logging& Logging::prepare(const std::string& logFileName) {
 
   // dont know how to set a std::ofstream* to std::cout
   // but logging to a file is probably better anyway ...
+  delete ofs;
+  delete buffer;
   Logging::ofs = new std::ofstream(logFileName);
   Logging::buffer = new std::stringstream();
 

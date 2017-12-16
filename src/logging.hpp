@@ -8,12 +8,14 @@
 #define THROWING 2
 #define ERROR   1
 
-#define THROW(s)                           \
+#define THROW(s)                             \
+  (*Logging::buffer) << s;                   \
+  Logging::log(ERROR,__PRETTY_FUNCTION__ );  \
   throw std::string(s)
 
 
-#define MYLOG(n,s)                         \
-  (*Logging::buffer) << s;                 \
+#define MYLOG(n,s)                          \
+  (*Logging::buffer) << s;                  \
   Logging::log(n,__PRETTY_FUNCTION__ )
 
 
@@ -24,6 +26,21 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <exception>
+
+namespace momo {
+
+  class e : public std::exception {
+    public:
+    std::string msg;
+    e(std::string s) {msg = s;}
+    e(const char* s) {msg = s;}
+    virtual const char* what() const throw() {
+      return msg.c_str();
+    }
+  };
+
+}
 
 // some stream operator for standard objects:
 std::ostream& operator << (std::ostream & os, std::vector<unsigned int> v);
@@ -65,13 +82,14 @@ public:
   // static methods 
   static Logging& prepare();
   static Logging& prepare(const std::string&);
+  static void checkInit();
   static void finalize();
 
   static void log(int status, std::string method);
 
   static std::string getBuffer();
 
-
+  friend std::ostream& operator <<(std::ostream& os, std::vector<unsigned int> v);
 
 };
 
