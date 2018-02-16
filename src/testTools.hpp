@@ -14,7 +14,7 @@
 #include <cctype>
 #include <locale>
 
-
+namespace momo {
 
 class TestTools {
 
@@ -54,15 +54,8 @@ static void report(T actual_, T expected_, std::string test_) {
 
   static std::string * writeFile(std::string fn, std::string content) ;
 
-  // trim from start
-  static std::string ltrim(std::string s);
 
-  // trim from end
-  static  std::string rtrim(std::string s);
-  
-  // trim from both ends
-  static std::string trim(std::string s);
 
 };
-
+}
 #endif // _TESTTOOLS_HPP

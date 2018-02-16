@@ -1,5 +1,7 @@
 #include "testTools.hpp"
 
+namespace momo {
+
 double TestTools::tolerance = 1e-4;
 std::string * TestTools::logFileName =0;
 std::ofstream * TestTools::logStream = 0;
@@ -67,19 +69,5 @@ std::ofstream * TestTools::getLogStream(){
   }
 
 
-// trim from start
-std::string TestTools::ltrim(std::string s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-        return s;
-}
 
-// trim from end
-std::string TestTools::rtrim(std::string s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-        return s;
-}
-
-// trim from both ends
-std::string TestTools::trim(std::string s) {
-        return ltrim(rtrim(s));
 }
