@@ -44,6 +44,7 @@ namespace momo {
 
 // some stream operator for standard objects:
 std::ostream& operator << (std::ostream & os, std::vector<unsigned int> v);
+std::ostream& operator << (std::ostream & os, std::vector<int> v);
 
 class Logging  {
 

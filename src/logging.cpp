@@ -17,6 +17,14 @@ std::ostream& operator <<(std::ostream& os, std::vector<unsigned int> v) {
   return os;
 }
 
+std::ostream& operator <<(std::ostream& os, std::vector<int> v) {
+  os << v[0];
+  for (unsigned int i=1; i<v.size(); i++) os << ":" << v[i] ;
+  os << std::endl;
+  return os;
+}
+
+
 Logging::Logging() {
   Logging::ofs = new std::ofstream("/dev/null");
   Logging::buffer = new std::stringstream();
