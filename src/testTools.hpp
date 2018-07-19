@@ -14,6 +14,9 @@
 #include <cctype>
 #include <locale>
 
+#include <math.h> // for fabs()
+
+
 namespace momo {
 
 class TestTools {
