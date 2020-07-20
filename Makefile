@@ -11,8 +11,10 @@ INCLUDES =  -I /home/rafel/local/include
 
 
 install: src/logging.o src/testTools.o
+	mkdir -p  ~/local/include/momo
 	cp src/logging.hpp ~/local/include/momo
 	cp src/testTools.hpp ~/local/include/momo
+	mkdir -p  ~/local/lib
 	ar rvs ~/local/lib/libmomoLogging.a src/logging.o src/testTools.o
 
 src/logging.o: src/logging.cpp src/logging.hpp
